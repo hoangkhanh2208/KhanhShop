@@ -25,17 +25,24 @@ public class Product {
     private Double price;
     @NotBlank(message = "About not empty")
     private String about;
-    @NotNull
-    private Integer discount;
+//    private String brand;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "Createdate")
     private Date createDate = new Date();
-    @NotNull
+    @Column(columnDefinition = "boolean default true")
     private Boolean available;
+
     @ManyToOne
     @JoinColumn(name = "Categoryid")
     private Category category;
 
 //    @OneToMany(mappedBy = "product")
 //    private List<OrderDetail> orderDetails;
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (image == null || id == null) return null;
+        return "/product-photos/" + id + "/" + image;
+    }
 }

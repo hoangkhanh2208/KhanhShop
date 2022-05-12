@@ -1,6 +1,5 @@
 package com.hoangkhanh.khanhshop.model;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;

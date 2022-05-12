@@ -148,15 +148,18 @@
 
                 <div class="row">
 
-                    <th:block th:each="product : ${products}">
+                    <th:block >
                         <!-- Single Product Area -->
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div
+                                th:each="product : ${products}"
+                                class="col-12 col-sm-6 col-md-12 col-xl-6"
+                        >
                             <div class="single-product-wrapper">
                                 <!-- Product Image -->
 
                                 <div class="product-img">
                                     <a class="product-link" th:href="@{'/productdetail/' + ${product.id}}">
-                                        <img th:src="@{'/photos/' + ${product.image}}" alt="">
+                                        <img th:src="@{'/photos/product-img/' + ${product.image}}" alt="">
                                         <!-- Hover Thumb -->
                                         <img class="hover-img" src="/photos/product-img/product2.jpg" alt="">
                                     </a>
@@ -183,7 +186,7 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
                                         <div class="cart">
-                                            <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="photos/core-img/cart.png" alt=""></a>
+                                            <a th:href="@{'/cart/addProductToCart/' + ${product.id}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="photos/core-img/cart.png" alt=""></a>
                                         </div>
                                     </div>
                                 </div>

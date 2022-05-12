@@ -7,21 +7,30 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Data
 @Entity
-@Table(name = "Accounts")
-public class Account {
+@Table(name = "Users")
+public class User {
+
+    public static final String ROLE_EMPLOYEE = "EMPLOYEE";
+    public static final String ROLE_USER = "USER";
+    public static final String ROLE_MANAGER = "MANAGER";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     @NotBlank(message = "Username not blank")
     private String username;
+
     @NotBlank(message = "Password not blank")
     private String password;
+
     private String fullname;
     @NotEmpty
+    @Column(unique = true)
     @Email
     private String email;
     private String address;
@@ -29,9 +38,7 @@ public class Account {
     private String photo;
     @NotNull
     private boolean activated;
-    @NotNull
-    private boolean admin;
+    @Column(name = "User_Role", length = 20, nullable = false)
+    private String userRole;
 
-//    @OneToMany(mappedBy = "account")
-//    private List<Order> orders;
 }

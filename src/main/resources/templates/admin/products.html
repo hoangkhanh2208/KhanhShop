@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+
+<head th:replace="~{admin/index :: head(Products)}"></head>
+
+  <body id="reportsPage">
+
+  <!-- Navbar -->
+  <nav th:replace="~{admin/layout/navbar :: navbar}"></nav>
+
+
+    <div class="container mt-5">
+      <form th:action="@{/admin/deleteProducts}" th:object="${sproduct}">
+      <div class="row tm-content-row">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+            <div class="tm-product-table-container">
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">PRODUCT NAME</th>
+                    <th scope="col">UNIT SOLD</th>
+                    <th scope="col">IN STOCK</th>
+                    <th scope="col">EXPIRE DATE</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="product : ${products}"
+                  >
+                    <th scope="row"><input type="checkbox" name="productIds" th:value="${product.id}" /></th>
+                    <td th:data-url="'/admin/edit-product?id=' + ${product.id}"
+                        th:onclick="window.location.href=this.getAttribute('data-url')"
+                        style="cursor: pointer" class="tm-product-name" th:text="${product.name}">Lorem Ipsum Product 1</td>
+                    <td>1,450</td>
+                    <td th:text="${product.quantity}">550</td>
+                    <td>28 March 2019</td>
+                    <td>
+                      <a th:href="@{/admin/deleteProduct/{id}(id=${product.id})}" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <a
+              href="/admin/add-product"
+              class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
+            <button class="btn btn-primary btn-block text-uppercase" type="submit">
+              Delete selected products
+            </button>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+            <h2 class="tm-block-title">Product Categories</h2>
+            <div class="tm-product-table-container">
+              <table class="table tm-table-small tm-product-table">
+                <tbody>
+                  <tr th:each="category : ${categorys}">
+                    <td class="tm-product-name" th:text="${category.name}">Product Category 1</td>
+                    <td class="text-center">
+                      <a href="#" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <button class="btn btn-primary btn-block text-uppercase mb-3">
+              Add new category
+            </button>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+    <footer class="tm-footer row tm-mt-small">
+      <div class="col-12 font-weight-light">
+        <p class="text-center text-white mb-0 px-4 small">
+          Copyright &copy; <b>2018</b> All rights reserved. 
+          
+          Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script>
+    </script>
+  </body>
+</html>

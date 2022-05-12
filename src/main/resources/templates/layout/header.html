@@ -12,9 +12,14 @@
         <ul>
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/shop">Shop</a></li>
-<!--            <li><a href="/product-details">Product</a></li>-->
             <li><a href="/cart">Cart</a></li>
-            <li><a href="/checkout">Checkout</a></li>
+            <li>
+                <a th:if="${#request.userPrincipal != null}" href="#">[[${#request.userPrincipal.principal.username}]]</a>
+                <a th:if="${#request.userPrincipal == null}" href="/login">Login</a>
+            </li>
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/signup">Create account</a></li>
+
         </ul>
     </nav>
     <!-- Button Group -->

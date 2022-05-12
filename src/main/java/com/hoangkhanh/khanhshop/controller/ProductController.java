@@ -1,6 +1,7 @@
 package com.hoangkhanh.khanhshop.controller;
 
 
+import com.hoangkhanh.khanhshop.dto.OrderInfo;
 import com.hoangkhanh.khanhshop.model.Product;
 import com.hoangkhanh.khanhshop.repository.ProductRepository;
 import com.hoangkhanh.khanhshop.service.CategoryService;
@@ -39,10 +40,11 @@ public class ProductController {
         return "shop";
     }
 
-    @RequestMapping("/productdetail")
+    @RequestMapping("/productdetail/{id}")
     public String showProductDetailById(@PathVariable(value = "id") Long id, Model model){
         Optional<Product> product =  productRepository.findById(id);
         model.addAttribute("product",product.get());
+        model.addAttribute("oderInfo", new OrderInfo());
         return "product-details";
     }
 
